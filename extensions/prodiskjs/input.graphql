@@ -1,0 +1,25 @@
+query Input {
+  cart {
+    lines {
+      id
+      quantity
+      merchandise {
+        __typename
+        ...on ProductVariant {
+            id
+            qtybrks: metafield(
+              namespace: "custom"
+              key: "qbreaks"
+            ) {
+              value
+            }
+        }
+      }
+    }
+  }
+  discountNode {
+    metafield(namespace: "$app:volume-discount", key: "function-configuration") {
+      value
+    }
+  }
+}
